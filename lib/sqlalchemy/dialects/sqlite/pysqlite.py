@@ -273,10 +273,10 @@ class SQLiteDialect_pysqlite(SQLiteDialect):
     @classmethod
     def dbapi(cls):
         try:
-            from pysqlite2 import dbapi2 as sqlite
+            from sqlite3 import dbapi2 as sqlite
         except ImportError, e:
             try:
-                from sqlite3 import dbapi2 as sqlite #try the 2.5+ stdlib name.
+                from pysqlite2 import dbapi2 as sqlite  #try the pre 2.5 stdlib name.
             except ImportError:
                 raise e
         return sqlite
